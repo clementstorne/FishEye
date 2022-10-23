@@ -5,9 +5,7 @@ class Api {
 
   async get() {
     return fetch(this.url)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .catch((err) => console.log(err));
   }
 }
