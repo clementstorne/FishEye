@@ -1,6 +1,13 @@
-# Base de code du projet P6 - Parcours Front-end
+# FishEye
 
-## Démarrer le projet
+Projet n°6 du [parcours Développeur d'Application - JavaScript React](https://openclassrooms.com/fr/paths/516-developpeur-dapplication-javascript-react) d'OpenClassrooms : _Créez un site accessible pour une plateforme de photographes_.
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+> Description
 
+## 📚 Technologie utilisées
+
+- HTML
+- CSS
+- JavaScript
+
+## 📎 Rendu visuel
