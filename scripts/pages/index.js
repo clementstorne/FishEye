@@ -1,4 +1,4 @@
-const photographersApi = new PhotographersApi("/data/photographers.json");
+const photographersApi = new PhotographersApi("data/photographers.json");
 
 async function getPhotographers() {
   const photographers = await photographersApi.getPhotographersData();
