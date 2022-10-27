@@ -33,5 +33,41 @@ function photographerFactory(data) {
     paragraph.appendChild(rate);
     return article;
   }
-  return { name, picture, city, country, tagline, price, id, getUserCardDOM };
+
+  function getPhotographerCard() {
+    // const photographHeader = document.createElement("div");
+    // photographHeader.classList.add("photograph-header");
+    // const photographerProfile = document.createElement("div");
+    // photographerProfile.classList.add("photographer-profile");
+    // const photographerName = document.createElement("h1");
+    // photographerName.classList.add("photograph-name");
+    // photographerName.innerText = name;
+    const photographerName = document.querySelector(".photographer-name");
+    photographerName.innerText = name;
+    const photographerPlace = document.querySelector(".photographer-place");
+    photographerPlace.innerHTML = `${city}, ${country}`;
+    const photographerCatchphrase = document.querySelector(
+      ".photographer-catchphrase"
+    );
+    photographerCatchphrase.innerText = tagline;
+    const img = document.querySelector(".user");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", `${name}`);
+
+    // photographHeader.appendChild(col1);
+    // photographerProfile.appendChild(photographerName);
+    // photographHeader.appendChild(col2);
+    // photographHeader.appendChild(col3);
+  }
+  return {
+    name,
+    picture,
+    city,
+    country,
+    tagline,
+    price,
+    id,
+    getUserCardDOM,
+    getPhotographerCard,
+  };
 }

@@ -19,4 +19,13 @@ class PhotographersApi extends Api {
     const res = await this.get();
     return res.photographers;
   }
+
+  async getOnePhotographerData(photographerId) {
+    const res = await this.get();
+    const photographers = res.photographers;
+    const data = photographers.filter(
+      (photographer) => photographer.id == photographerId
+    );
+    return data;
+  }
 }
