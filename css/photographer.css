@@ -149,6 +149,7 @@ form input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 95px;
+  row-gap: 20px;
   /* display: flex;
   flex-flow: row wrap;
   justify-content: space-around; */
@@ -171,6 +172,13 @@ form input {
   object-fit: cover;
 }
 
+.thumb-banner {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .thumb-title {
   font-size: 24px;
   font-weight: 400;
@@ -178,16 +186,23 @@ form input {
   margin: 10px 0;
 }
 
-.likes {
+.likes-number {
   height: 31px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
   font-size: 24px;
   font-weight: 500;
   color: #901c1c;
   margin: 10px 0;
   align-items: center;
+}
+
+.likes-number::after {
+  content: "";
+  display: inline-block;
+  background-image: url(/assets/icons/heart.svg);
+  background-size: 20px 20px;
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
 }
 
 .likes svg {

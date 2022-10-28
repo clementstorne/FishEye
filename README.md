@@ -11,3 +11,7 @@ Projet n°6 du [parcours Développeur d'Application - JavaScript React](https://
 - JavaScript
 
 ## 📎 Rendu visuel
+
+## 💻 Démo du site
+
+[FishEye](https://clementstorne.github.io/FishEye/)
