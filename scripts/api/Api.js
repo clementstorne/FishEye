@@ -29,3 +29,14 @@ class PhotographersApi extends Api {
     return data;
   }
 }
+
+class MediasApi extends Api {
+  constructor(url) {
+    super(url);
+  }
+
+  async getMedias() {
+    const res = await this.get();
+    return res.media;
+  }
+}

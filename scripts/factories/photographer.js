@@ -31,17 +31,11 @@ function photographerFactory(data) {
     paragraph.appendChild(place);
     paragraph.appendChild(catchphrase);
     paragraph.appendChild(rate);
+
     return article;
   }
 
   function getPhotographerCard() {
-    // const photographHeader = document.createElement("div");
-    // photographHeader.classList.add("photograph-header");
-    // const photographerProfile = document.createElement("div");
-    // photographerProfile.classList.add("photographer-profile");
-    // const photographerName = document.createElement("h1");
-    // photographerName.classList.add("photograph-name");
-    // photographerName.innerText = name;
     const photographerName = document.querySelector(".photographer-name");
     photographerName.innerText = name;
     const photographerPlace = document.querySelector(".photographer-place");
@@ -53,12 +47,8 @@ function photographerFactory(data) {
     const img = document.querySelector(".user");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${name}`);
-
-    // photographHeader.appendChild(col1);
-    // photographerProfile.appendChild(photographerName);
-    // photographHeader.appendChild(col2);
-    // photographHeader.appendChild(col3);
   }
+
   return {
     name,
     picture,
