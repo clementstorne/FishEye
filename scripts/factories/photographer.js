@@ -49,6 +49,11 @@ function photographerFactory(data) {
     img.setAttribute("alt", `${name}`);
   }
 
+  function getPhotographerPrice() {
+    const photographerPrice = document.querySelector(".price");
+    photographerPrice.innerText = `${price} € / jour`;
+  }
+
   return {
     name,
     picture,
@@ -59,5 +64,6 @@ function photographerFactory(data) {
     id,
     getUserCardDOM,
     getPhotographerCard,
+    getPhotographerPrice,
   };
 }

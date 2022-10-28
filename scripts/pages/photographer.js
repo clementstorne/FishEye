@@ -17,6 +17,7 @@ async function getPhotographerData(photographerId) {
 async function displayData(photographer) {
   const photographerModel = photographerFactory(photographer);
   const photographerCard = photographerModel.getPhotographerCard();
+  const photographerPrice = photographerModel.getPhotographerPrice();
 }
 
 async function getPhotographerMedia(photographerId) {
@@ -37,53 +38,19 @@ async function displayMedia(medias) {
   });
 }
 
-const sampleMedia = [
-  {
-    id: 623534343,
-    photographerId: 243,
-    title: "Lonesome",
-    image: "Travel_Lonesome.jpg",
-    likes: 88,
-    date: "2019-02-03",
-    price: 45,
-  },
-  {
-    id: 625025343,
-    photographerId: 243,
-    title: "Hillside Color",
-    image: "Travel_HillsideColor.jpg",
-    likes: 85,
-    date: "2019-04-03",
-    price: 45,
-  },
-  {
-    id: 2525345343,
-    photographerId: 243,
-    title: "Wednesday Potrait",
-    image: "Portrait_Wednesday.jpg",
-    likes: 34,
-    date: "2019-04-07",
-    price: 45,
-  },
-  {
-    id: 2523434634,
-    photographerId: 243,
-    title: "Nora Portrait",
-    image: "Portrait_Nora.jpg",
-    likes: 63,
-    date: "2019-04-07",
-    price: 45,
-  },
-  {
-    id: 398847109,
-    photographerId: 243,
-    title: "Raw Black Portrait",
-    image: "Portrait_Background.jpg",
-    likes: 55,
-    date: "2019-06-20",
-    price: 45,
-  },
-];
+function getTotalOfLikes(medias) {
+  let arrayOfLikes = [];
+  medias.forEach((media) => {
+    arrayOfLikes.push(media.likes);
+  });
+  return arrayOfLikes.reduce((a, b) => a + b, 0);
+}
+
+function displayTotalOfLikes(medias) {
+  const sum = getTotalOfLikes(medias);
+  const totalOfLikes = document.querySelector(".likes-total");
+  totalOfLikes.innerText = sum;
+}
 
 async function init() {
   const data = await getPhotographerData(photographerId);
@@ -91,6 +58,7 @@ async function init() {
   displayData(photographer);
   const medias = await getPhotographerMedia(photographerId);
   displayMedia(medias);
+  displayTotalOfLikes(medias);
 }
 
 init();
