@@ -14,26 +14,45 @@ async function getPhotographerData(photographerId) {
   return photographerData;
 }
 
-async function displayData(photographer) {
+function displayData(photographer) {
   const photographerModel = photographerFactory(photographer);
   const photographerCard = photographerModel.getPhotographerCard();
   const photographerPrice = photographerModel.getPhotographerPrice();
 }
 
-async function getPhotographerMedia(photographerId) {
+async function getPhotographerMedias(photographerId) {
   const allMedias = await mediasApi.getMedias();
   const photographerMedias = allMedias.filter(
     (media) => media.photographerId == photographerId
   );
   return photographerMedias;
 }
+function filterImages(photographerMedias) {
+  const photographerImages = photographerMedias.filter((media) => !media.video);
+  return photographerImages;
+}
 
-async function displayMedia(medias) {
+function filterVideos(photographerMedias) {
+  const photographerVideos = photographerMedias.filter((media) => !media.image);
+  return photographerVideos;
+}
+
+function displayImages(medias) {
   const mediasGrid = document.querySelector(".medias-grid");
 
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media);
-    const mediaCard = mediaModel.getMediaCard();
+    const mediaCard = mediaModel.createImageCard();
+    mediasGrid.appendChild(mediaCard);
+  });
+}
+
+function displayVideos(medias) {
+  const mediasGrid = document.querySelector(".medias-grid");
+
+  medias.forEach((media) => {
+    const mediaModel = mediaFactory(media);
+    const mediaCard = mediaModel.createVideoCard();
     mediasGrid.appendChild(mediaCard);
   });
 }
@@ -56,8 +75,11 @@ async function init() {
   const data = await getPhotographerData(photographerId);
   const photographer = data[0];
   displayData(photographer);
-  const medias = await getPhotographerMedia(photographerId);
-  displayMedia(medias);
+  const medias = await getPhotographerMedias(photographerId);
+  const images = filterImages(medias);
+  const videos = filterVideos(medias);
+  displayImages(images);
+  displayVideos(videos);
   displayTotalOfLikes(medias);
 }
 

@@ -2,8 +2,9 @@ function mediaFactory(data) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
 
   const picture = `assets/medias/${image}`;
+  const movie = `assets/medias/${video}`;
 
-  function getMediaCard() {
+  function createImageCard() {
     const wrapper = document.createElement("div");
     wrapper.classList.add("thumb-imgfull");
     const img = document.createElement("img");
@@ -28,14 +29,45 @@ function mediaFactory(data) {
     return wrapper;
   }
 
+  function createVideoCard() {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("thumb-imgfull");
+    const vid = document.createElement("video");
+    vid.classList.add("thumb-img");
+    vid.setAttribute("controls", "controls");
+    const vidSrc = document.createElement("source");
+    vidSrc.setAttribute("src", movie);
+    vidSrc.setAttribute("type", "video/mp4");
+    vidSrc.setAttribute("alt", `${title}, closeup view`);
+    vidSrc.setAttribute("onclick", "openLightBox()");
+    const cardBanner = document.createElement("div");
+    cardBanner.classList.add("thumb-banner");
+    const imgName = document.createElement("p");
+    imgName.classList.add("thumb-title");
+    imgName.innerText = title;
+    const likesNumber = document.createElement("p");
+    likesNumber.classList.add("likes-number");
+    likesNumber.innerText = likes;
+
+    wrapper.appendChild(vid);
+    vid.appendChild(vidSrc);
+    wrapper.appendChild(cardBanner);
+    cardBanner.appendChild(imgName);
+    cardBanner.appendChild(likesNumber);
+
+    return wrapper;
+  }
+
   return {
     id,
     photographerId,
     title,
     image,
+    video,
     likes,
     date,
     price,
-    getMediaCard,
+    createImageCard,
+    createVideoCard,
   };
 }
