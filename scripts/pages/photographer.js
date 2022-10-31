@@ -16,7 +16,7 @@ async function getPhotographerData(photographerId) {
 
 function displayData(photographer) {
   const photographerModel = photographerFactory(photographer);
-  const photographerCard = photographerModel.getPhotographerCard();
+  const photographerCard = photographerModel.createPhotographerCard();
   const photographerPrice = photographerModel.getPhotographerPrice();
 }
 
@@ -66,8 +66,12 @@ function getTotalOfLikes(medias) {
 }
 
 function displayTotalOfLikes(medias) {
+  const cta = document.querySelector(".cta");
+  const photographerPrice = document.querySelector(".price");
   const sum = getTotalOfLikes(medias);
-  const totalOfLikes = document.querySelector(".likes-total");
+  const totalOfLikes = document.createElement("p");
+  cta.insertBefore(totalOfLikes, photographerPrice);
+  totalOfLikes.classList.add("likes-total");
   totalOfLikes.innerText = sum;
 }
 

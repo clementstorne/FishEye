@@ -35,7 +35,7 @@ function photographerFactory(data) {
     return article;
   }
 
-  function getPhotographerCard() {
+  function createPhotographerCard() {
     const photographerName = document.querySelector(".photographer-name");
     photographerName.innerText = name;
     const photographerPlace = document.querySelector(".photographer-place");
@@ -50,8 +50,15 @@ function photographerFactory(data) {
   }
 
   function getPhotographerPrice() {
-    const photographerPrice = document.querySelector(".price");
+    const body = document.querySelector("body");
+    const cta = document.createElement("div");
+    cta.classList.add("cta");
+    const photographerPrice = document.createElement("p");
+    photographerPrice.classList.add("price");
     photographerPrice.innerText = `${price} € / jour`;
+
+    body.appendChild(cta);
+    cta.appendChild(photographerPrice);
   }
 
   return {
@@ -63,7 +70,7 @@ function photographerFactory(data) {
     price,
     id,
     getUserCardDOM,
-    getPhotographerCard,
+    createPhotographerCard,
     getPhotographerPrice,
   };
 }
