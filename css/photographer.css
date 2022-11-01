@@ -29,28 +29,28 @@
 }
 
 .photographer-name {
-  font-size: 4em;
+  font-size: 64px;
   font-weight: 400;
   color: #d3573c;
   margin: 0;
 }
 
 .photographer-place {
-  font-size: 1.5em;
+  font-size: 24px;
   font-weight: 400;
   color: #901c1c;
   margin: 0 0 19px;
 }
 
 .photographer-catchphrase {
-  font-size: 1.125em;
+  font-size: 18px;
   font-weight: 400;
   color: #525252;
   margin: 0;
 }
 
 .contact_button {
-  font-size: 1.125em;
+  font-size: 18px;
   font-weight: bold;
   color: white;
   padding: 23px 18px;
@@ -105,7 +105,7 @@
 
 .modal header h1 {
   margin: 0;
-  font-size: 4em;
+  font-size: 64px;
   font-weight: 400;
   text-align: left;
   color: black;
@@ -121,7 +121,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 2.25em;
+  font-size: 36px;
   font-weight: 400;
   border-radius: 5px;
 }
@@ -141,7 +141,7 @@ form textarea {
   border: none;
   border-radius: 5px;
   font-family: "DM Sans", sans-serif;
-  font-size: 1.5em;
+  font-size: 24px;
   font-weight: 400;
   padding-left: 20px;
 }
@@ -179,7 +179,7 @@ form button:focus {
 }
 
 #sort-label {
-  font-size: 1.125em;
+  font-size: 18px;
   font-weight: 700;
   margin: 20px 0 58px;
 }
@@ -191,7 +191,7 @@ form button:focus {
   border: none;
   border-radius: 5px;
   color: white;
-  font-size: 1.125em;
+  font-size: 18px;
   font-weight: 700;
   margin: 9px 25px 23px;
   padding-left: 20px;
@@ -229,7 +229,7 @@ form button:focus {
 }
 
 .thumb-title {
-  font-size: 1.5em;
+  font-size: 24px;
   font-weight: 400;
   color: #901c1c;
   margin: 10px 0;
@@ -238,7 +238,7 @@ form button:focus {
 .likes-number {
   height: 31px;
   min-width: 70px;
-  font-size: 1.5em;
+  font-size: 24px;
   font-weight: 500;
   text-align: right;
   color: #901c1c;
@@ -274,7 +274,7 @@ form button:focus {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  font-size: 1.5em;
+  font-size: 24px;
   font-weight: 500;
 }
 
