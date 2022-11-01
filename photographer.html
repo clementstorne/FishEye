@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body aria-hidden="false">
     <header>
       <a href="index.html"
         ><img
@@ -29,24 +29,86 @@
           <p class="photographer-place"></p>
           <p class="photographer-catchphrase"></p>
         </div>
-        <button class="contact_button" onclick="displayModal()">
+        <button
+          class="contact_button"
+          aria-haspopup="dialog"
+          aria-controls="modal-contact"
+          onclick="displayModal()"
+        >
           Contactez-moi
         </button>
         <img class="user" />
       </div>
     </main>
-    <div id="contact_modal">
+    <div
+      id="modal-contact"
+      aria-hidden="true"
+      role="dialog"
+      aria-describedby="modal-title"
+    >
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h1 id="modal-title">Contactez-moi</h1>
+          <img
+            src="assets/icons/close.svg"
+            alt="Close Contact form"
+            class="modal-close-btn"
+            onclick="closeModal()"
+          />
         </header>
-        <form>
+        <form
+          novalidate
+          action="index.html"
+          method="get"
+          onsubmit="return validate(event);"
+        >
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="first-name">Prénom</label>
+            <input
+              type="text"
+              name="first-name"
+              id="first-name"
+              required
+              aria-required="true"
+            />
+            <div class="invalid-feedback">
+              Le prénom doit contenir au moins deux caractères.
+            </div>
+            <label for="last-name">Nom</label>
+            <input
+              type="text"
+              name="last-name"
+              id="last-name"
+              required
+              aria-required="true"
+              minlength="2"
+            />
+            <div class="invalid-feedback">
+              Le nom doit contenir au moins deux caractères.
+            </div>
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              aria-required="true"
+              minlength="2"
+            />
+            <div class="invalid-feedback">
+              Veuillez saisir une adresse email valide.
+            </div>
+            <label for="message">Votre message</label>
+            <textarea
+              type="text"
+              name="message"
+              id="message"
+              required
+              aria-required="true"
+            ></textarea>
+            <div class="invalid-feedback">Veuillez saisir votre message.</div>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" type="submit">Envoyer</button>
         </form>
       </div>
     </div>
@@ -59,7 +121,6 @@
       </select>
       <div class="medias-grid"></div>
     </div>
-    <script src="./scripts/utils/contactForm.js"></script>
     <!-- Lib -->
     <!-- Factories -->
     <script src="./scripts/factories/medias.js"></script>
@@ -70,6 +131,8 @@
     <!-- Decorators -->
     <!-- Proxy -->
     <!-- Templates -->
+    <!-- Utils -->
+    <script src="./scripts/utils/contactForm.js"></script>
     <!-- Api -->
     <script src="./scripts/api/Api.js"></script>
     <!-- Pub/Sub -->
