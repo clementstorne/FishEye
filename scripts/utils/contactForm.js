@@ -139,16 +139,15 @@ function validate(event) {
     message.value !== ""
   ) {
     closeModal();
-    console.log(
-      // `Vous avez reçu un nouveau message de ${newMessage.firstname} ${newMessage.lastname} (${newMessage.email}) : ${newMessage.message}`
-      newMessage
-    );
     const newMessage = {
       firstname: firstname.value,
       lastname: lastname.value,
       email: email.value,
       message: message.value,
     };
+    console.log(
+      `Vous avez reçu un nouveau message de ${newMessage.firstname} ${newMessage.lastname} (${newMessage.email}) : ${newMessage.message}`
+    );
     clearFormFields();
   }
 }

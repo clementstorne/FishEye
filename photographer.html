@@ -22,24 +22,7 @@
           alt="Fisheye Home page"
       /></a>
     </header>
-    <main id="main">
-      <!-- <div class="photographer-header">
-        <div class="photographer-profile">
-          <h1 class="photographer-name"></h1>
-          <p class="photographer-place"></p>
-          <p class="photographer-catchphrase"></p>
-        </div>
-        <button
-          class="contact_button"
-          aria-haspopup="dialog"
-          aria-controls="modal-contact"
-          onclick="displayModal()"
-        >
-          Contactez-moi
-        </button>
-        <img class="user" />
-      </div> -->
-    </main>
+    <main id="main"></main>
     <div
       id="modal-contact"
       aria-hidden="true"
@@ -113,6 +96,7 @@
       </div>
     </div>
     <div class="photographer-medias">
+      <!-- <button class="sort-select-wrapper"></button> -->
       <label for="sort" id="sort-label">Trier par</label>
       <select id="sort" aria-label="Order by">
         <option value="popularity" selected>Popularité</option>
@@ -133,6 +117,7 @@
     <!-- Templates -->
     <!-- Utils -->
     <script src="./scripts/utils/contactForm.js"></script>
+    <script src="./scripts/utils/sortSelect.js"></script>
     <!-- Api -->
     <script src="./scripts/api/Api.js"></script>
     <!-- Pub/Sub -->
