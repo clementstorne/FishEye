@@ -7,11 +7,15 @@ function mediaFactory(data) {
   function createImageCard() {
     const wrapper = document.createElement("div");
     wrapper.classList.add("thumb-imgfull");
+    const link = document.createElement("a");
+    link.setAttribute(
+      "onclick",
+      `displayLightbox('${picture}','${title}','image')`
+    );
     const img = document.createElement("img");
     img.classList.add("thumb-img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${title}, closeup view`);
-    img.setAttribute("onclick", "openLightBox()");
     const cardBanner = document.createElement("div");
     cardBanner.classList.add("thumb-banner");
     const imgName = document.createElement("p");
@@ -21,7 +25,8 @@ function mediaFactory(data) {
     likesNumber.classList.add("likes-number");
     likesNumber.innerText = likes;
 
-    wrapper.appendChild(img);
+    wrapper.appendChild(link);
+    link.appendChild(img);
     wrapper.appendChild(cardBanner);
     cardBanner.appendChild(imgName);
     cardBanner.appendChild(likesNumber);
@@ -34,12 +39,15 @@ function mediaFactory(data) {
     wrapper.classList.add("thumb-imgfull");
     const vid = document.createElement("video");
     vid.classList.add("thumb-img");
-    vid.setAttribute("controls", "controls");
+    vid.setAttribute("src", movie);
+    vid.setAttribute(
+      "onclick",
+      `displayLightbox('${movie}','${title}','video')`
+    );
+    // vid.setAttribute("controls", "controls");
     const vidSrc = document.createElement("source");
-    vidSrc.setAttribute("src", movie);
     vidSrc.setAttribute("type", "video/mp4");
     vidSrc.setAttribute("alt", `${title}, closeup view`);
-    vidSrc.setAttribute("onclick", "openLightBox()");
     const cardBanner = document.createElement("div");
     cardBanner.classList.add("thumb-banner");
     const imgName = document.createElement("p");

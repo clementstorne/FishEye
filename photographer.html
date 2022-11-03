@@ -35,8 +35,8 @@
           <img
             src="assets/icons/close.svg"
             alt="Close Contact form"
-            class="modal-close-btn"
             onclick="closeModal()"
+            role="button"
           />
         </header>
         <form
@@ -96,7 +96,6 @@
       </div>
     </div>
     <div class="photographer-medias">
-      <!-- <button class="sort-select-wrapper"></button> -->
       <label for="sort" id="sort-label">Trier par</label>
       <select id="sort" aria-label="Order by">
         <option value="popularity" selected>Popularité</option>
@@ -104,6 +103,34 @@
         <option value="title">Titre</option>
       </select>
       <div class="medias-grid"></div>
+      <div id="lightbox-wrapper" aria-hidden="true" role="dialog">
+        <div class="lightbox">
+          <div class="lightbox-col">
+            <a onclick="showPreviousMedia()">
+              <img src="./assets/icons/previous.svg" alt="Previous image" />
+            </a>
+          </div>
+          <div class="lightbox-media-wrapper">
+            <!-- <video
+              controls
+              src="./assets/medias/Animals_Puppiness.mp4"
+              class="lightbox-media"
+            ></video> -->
+          </div>
+          <div class="lightbox-col">
+            <img
+              src="assets/icons/close-red.svg"
+              alt="Close Dialog"
+              role="button"
+              class="lightbox-close-btn"
+              onclick="closeLightbox()"
+            />
+            <a onclick="showNextMedia()">
+              <img src="./assets/icons/next.svg" alt="Next image" />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Lib -->
     <!-- Factories -->
@@ -117,6 +144,7 @@
     <!-- Templates -->
     <!-- Utils -->
     <script src="./scripts/utils/contactForm.js"></script>
+    <script src="./scripts/utils/lightbox.js"></script>
     <script src="./scripts/utils/sortSelect.js"></script>
     <!-- Api -->
     <script src="./scripts/api/Api.js"></script>

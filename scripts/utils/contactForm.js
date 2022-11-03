@@ -3,7 +3,6 @@
 async function displayModal() {
   const contactModal = document.getElementById("modal-contact");
   const body = document.querySelector("body");
-  const modalCloseBtn = document.querySelector(".modal-close-btn");
   const modalTitle = document.getElementById("modal-title");
 
   contactModal.style.display = "flex";
@@ -14,15 +13,11 @@ async function displayModal() {
   const data = await getPhotographerData(photographerId);
   const photographerName = data[0].name;
   modalTitle.innerHTML = `Contactez-moi <br> ${photographerName}`;
-
-  modalCloseBtn.focus();
 }
 
 function closeModal() {
   const contactModal = document.getElementById("modal-contact");
   const body = document.querySelector("body");
-  const modalCloseBtn = document.querySelector(".modal-close-btn");
-  const modalTitle = document.getElementById("modal-title");
 
   contactModal.style.display = "none";
   contactModal.setAttribute("aria-hidden", "true");
