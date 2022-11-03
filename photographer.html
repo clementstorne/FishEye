@@ -103,20 +103,19 @@
         <option value="title">Titre</option>
       </select>
       <div class="medias-grid"></div>
-      <div id="lightbox-wrapper" aria-hidden="true" role="dialog">
+      <div
+        id="lightbox-wrapper"
+        aria-hidden="true"
+        aria-label="image closeup view"
+        role="dialog"
+      >
         <div class="lightbox">
           <div class="lightbox-col">
-            <a onclick="showPreviousMedia()">
+            <a onclick="previous()">
               <img src="./assets/icons/previous.svg" alt="Previous image" />
             </a>
           </div>
-          <div class="lightbox-media-wrapper">
-            <!-- <video
-              controls
-              src="./assets/medias/Animals_Puppiness.mp4"
-              class="lightbox-media"
-            ></video> -->
-          </div>
+          <div class="lightbox-media-wrapper"></div>
           <div class="lightbox-col">
             <img
               src="assets/icons/close-red.svg"
@@ -125,7 +124,7 @@
               class="lightbox-close-btn"
               onclick="closeLightbox()"
             />
-            <a onclick="showNextMedia()">
+            <a onclick="next()">
               <img src="./assets/icons/next.svg" alt="Next image" />
             </a>
           </div>

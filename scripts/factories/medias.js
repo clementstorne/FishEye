@@ -40,14 +40,11 @@ function mediaFactory(data) {
     const vid = document.createElement("video");
     vid.classList.add("thumb-img");
     vid.setAttribute("src", movie);
+    vid.setAttribute("alt", `${title}, closeup view`);
     vid.setAttribute(
       "onclick",
       `displayLightbox('${movie}','${title}','video')`
     );
-    // vid.setAttribute("controls", "controls");
-    const vidSrc = document.createElement("source");
-    vidSrc.setAttribute("type", "video/mp4");
-    vidSrc.setAttribute("alt", `${title}, closeup view`);
     const cardBanner = document.createElement("div");
     cardBanner.classList.add("thumb-banner");
     const imgName = document.createElement("p");
@@ -58,7 +55,6 @@ function mediaFactory(data) {
     likesNumber.innerText = likes;
 
     wrapper.appendChild(vid);
-    vid.appendChild(vidSrc);
     wrapper.appendChild(cardBanner);
     cardBanner.appendChild(imgName);
     cardBanner.appendChild(likesNumber);
