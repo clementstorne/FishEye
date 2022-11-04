@@ -75,6 +75,11 @@ function displayTotalOfLikes(medias) {
   totalOfLikes.innerText = sum;
 }
 
+function addNewLike(target) {
+  target.innerText++;
+  document.querySelector(".likes-total").innerText++;
+}
+
 async function init() {
   const data = await getPhotographerData(photographerId);
   const photographer = data[0];

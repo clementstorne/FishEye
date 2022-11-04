@@ -22,6 +22,8 @@ function mediaFactory(data) {
     imgName.classList.add("thumb-title");
     imgName.innerText = title;
     const likesNumber = document.createElement("p");
+    likesNumber.setAttribute("role", "button");
+    likesNumber.setAttribute("onclick", "addNewLike(this)");
     likesNumber.classList.add("likes-number");
     likesNumber.innerText = likes;
 
@@ -51,6 +53,8 @@ function mediaFactory(data) {
     imgName.classList.add("thumb-title");
     imgName.innerText = title;
     const likesNumber = document.createElement("p");
+    likesNumber.setAttribute("role", "button");
+    likesNumber.setAttribute("onclick", "addNewLike(this)");
     likesNumber.classList.add("likes-number");
     likesNumber.innerText = likes;
 
