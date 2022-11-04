@@ -16,6 +16,9 @@ function mediaFactory(data) {
     img.classList.add("thumb-img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${title}, closeup view`);
+    img.dataset.title = title;
+    img.dataset.likes = likes;
+    img.dataset.date = date;
     const cardBanner = document.createElement("div");
     cardBanner.classList.add("thumb-banner");
     const imgName = document.createElement("p");
@@ -47,6 +50,9 @@ function mediaFactory(data) {
       "onclick",
       `displayLightbox('${movie}','${title}','video')`
     );
+    vid.dataset.title = title;
+    vid.dataset.likes = likes;
+    vid.dataset.date = date;
     const cardBanner = document.createElement("div");
     cardBanner.classList.add("thumb-banner");
     const imgName = document.createElement("p");

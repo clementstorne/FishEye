@@ -80,6 +80,10 @@ function addNewLike(target) {
     target.dataset.alreadyLiked = "true";
     target.innerText++;
     document.querySelector(".likes-total").innerText++;
+  } else if (target.dataset.alreadyLiked) {
+    delete target.dataset.alreadyLiked;
+    target.innerText--;
+    document.querySelector(".likes-total").innerText--;
   }
 }
 

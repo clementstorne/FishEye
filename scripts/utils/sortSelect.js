@@ -3,6 +3,7 @@ const selectLabel = document.getElementById("sort-label");
 
 const mediaWrapper = document.querySelector(".photographer-medias");
 const sortSelectWrapper = document.createElement("button");
+sortSelectWrapper.setAttribute("onclick", "sort()");
 sortSelectWrapper.setAttribute("aria-haspopup", "listbox");
 sortSelectWrapper.setAttribute("aria-expanded", "false");
 sortSelectWrapper.classList.add("sort-select-wrapper");
@@ -25,6 +26,7 @@ sortSelectWrapper.appendChild(newMenu);
 for (let option of select.options) {
   const newOption = document.createElement("div");
   newOption.setAttribute("role", "option");
+  newOption.setAttribute("onclick", `sort('${option.value}')`);
   newOption.innerHTML = option.innerHTML;
   newOption.classList.add("sort-select-item", "hidden");
   newMenu.appendChild(newOption);
