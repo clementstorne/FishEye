@@ -98,9 +98,11 @@
     <div class="photographer-medias">
       <label for="sort" id="sort-label">Trier par</label>
       <select id="sort" aria-label="Order by">
-        <option value="popularity" selected>Popularité</option>
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
+        <option value="popularity" id="popularityOption" selected>
+          Popularité
+        </option>
+        <option value="date" id="dateOption">Date</option>
+        <option value="title" id="titleOption">Titre</option>
       </select>
       <div class="medias-grid"></div>
       <div
@@ -145,7 +147,6 @@
     <script src="./scripts/utils/contactForm.js"></script>
     <script src="./scripts/utils/lightbox.js"></script>
     <script src="./scripts/utils/sortSelect.js"></script>
-    <script src="./scripts/utils/sortMedia.js"></script>
     <!-- Api -->
     <script src="./scripts/api/Api.js"></script>
     <!-- Pub/Sub -->
