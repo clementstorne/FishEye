@@ -76,8 +76,11 @@ function displayTotalOfLikes(medias) {
 }
 
 function addNewLike(target) {
-  target.innerText++;
-  document.querySelector(".likes-total").innerText++;
+  if (!target.dataset.alreadyLiked) {
+    target.dataset.alreadyLiked = "true";
+    target.innerText++;
+    document.querySelector(".likes-total").innerText++;
+  }
 }
 
 async function init() {
