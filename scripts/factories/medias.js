@@ -7,15 +7,21 @@ function mediaFactory(data) {
   function createImageCard() {
     const wrapper = document.createElement("div");
     wrapper.classList.add("thumb-imgfull");
-    const link = document.createElement("a");
-    link.setAttribute(
-      "onclick",
-      `displayLightbox('${picture}','${title}','image')`
-    );
     const img = document.createElement("img");
     img.classList.add("thumb-img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${title}, closeup view`);
+    img.setAttribute("tabindex", "0");
+    img.addEventListener("click", (event) => {
+      event.preventDefault();
+      displayLightbox(picture, title, "image");
+    });
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        displayLightbox(picture, title, "image");
+      }
+    });
     img.dataset.title = title;
     img.dataset.likes = likes;
     img.dataset.date = date;
@@ -30,8 +36,7 @@ function mediaFactory(data) {
     likesNumber.classList.add("likes-number");
     likesNumber.innerText = likes;
 
-    wrapper.appendChild(link);
-    link.appendChild(img);
+    wrapper.appendChild(img);
     wrapper.appendChild(cardBanner);
     cardBanner.appendChild(imgName);
     cardBanner.appendChild(likesNumber);
@@ -46,10 +51,17 @@ function mediaFactory(data) {
     vid.classList.add("thumb-img");
     vid.setAttribute("src", movie);
     vid.setAttribute("alt", `${title}, closeup view`);
-    vid.setAttribute(
-      "onclick",
-      `displayLightbox('${movie}','${title}','video')`
-    );
+    vid.setAttribute("tabindex", "0");
+    vid.addEventListener("click", (event) => {
+      event.preventDefault();
+      displayLightbox(movie, title, "video");
+    });
+    vid.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        displayLightbox(movie, title, "video");
+      }
+    });
     vid.dataset.title = title;
     vid.dataset.likes = likes;
     vid.dataset.date = date;

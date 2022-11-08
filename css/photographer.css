@@ -83,6 +83,10 @@
   z-index: 2;
 }
 
+.sort-select-wrapper:focus {
+  outline: 3px solid #db8876;
+}
+
 .sort-select-wrapper::before {
   content: "Trier par";
   font-size: 18px;
@@ -199,6 +203,11 @@
   height: 300px;
   border-radius: 5px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.thumb-img:focus {
+  outline: 3px solid #901c1c;
 }
 
 .thumb-banner {

@@ -25,6 +25,10 @@ h1 {
   margin-left: 100px;
 }
 
+.link-to-homepage:focus {
+  outline: 3px solid #901c1c;
+}
+
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -47,6 +51,10 @@ h1 {
   align-items: center;
   flex-direction: column;
   text-decoration: none;
+}
+
+.photographer_section article a:focus {
+  outline: 3px solid #901c1c;
 }
 
 .photographer_section article a h2 {

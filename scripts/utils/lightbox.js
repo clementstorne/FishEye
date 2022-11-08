@@ -61,7 +61,6 @@ function previous() {
   const mediasList = Array.from(document.querySelectorAll(".thumb-img"));
 
   let currentMediaIndex = getCurrentMediaIndex();
-
   if (currentMediaIndex === 0) {
     currentMediaIndex = mediasList.length;
   }
@@ -76,9 +75,11 @@ function previous() {
 
   if (nextMediaType === "IMG") {
     document.querySelector(".lightbox-media").remove();
+    document.querySelector(".lightbox-media-title").remove();
     displayLightbox(nextMediaSrc, nextMediaTitle, "image");
   } else if (nextMediaType === "VIDEO") {
     document.querySelector(".lightbox-media").remove();
+    document.querySelector(".lightbox-media-title").remove();
     displayLightbox(nextMediaSrc, nextMediaTitle, "video");
   }
 }
