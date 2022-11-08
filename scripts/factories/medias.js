@@ -32,7 +32,17 @@ function mediaFactory(data) {
     imgName.innerText = title;
     const likesNumber = document.createElement("p");
     likesNumber.setAttribute("role", "button");
-    likesNumber.setAttribute("onclick", "addNewLike(this)");
+    likesNumber.setAttribute("tabindex", "0");
+    likesNumber.addEventListener("click", (event) => {
+      event.preventDefault();
+      addNewLike(event.target);
+    });
+    likesNumber.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addNewLike(event.target);
+      }
+    });
     likesNumber.classList.add("likes-number");
     likesNumber.innerText = likes;
 

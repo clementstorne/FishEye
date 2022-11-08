@@ -11,7 +11,6 @@ mediaWrapper.insertBefore(sortSelectWrapper, selectLabel);
 
 const sortSelect = document.createElement("div");
 sortSelect.classList.add("sort-select");
-// sortSelect.setAttribute("tabIndex", "0");
 sortSelect.innerHTML = select.options[select.selectedIndex].innerHTML;
 sortSelectWrapper.appendChild(sortSelect);
 

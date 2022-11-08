@@ -236,6 +236,10 @@
   cursor: pointer;
 }
 
+.likes-number:focus {
+  outline: 3px solid #901c1c;
+}
+
 .likes-number::after {
   content: "";
   display: inline-block;
