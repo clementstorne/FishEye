@@ -1,5 +1,6 @@
 @import url("photographer.css");
 @import url("lightbox.css");
+@import url("sortSelect.css");
 @import url("contactForm.css");
 
 body {
@@ -22,7 +23,7 @@ h1 {
 
 .logo {
   height: 50px;
-  margin-left: 100px;
+  margin-left: 70px;
 }
 
 .link-to-homepage:focus {

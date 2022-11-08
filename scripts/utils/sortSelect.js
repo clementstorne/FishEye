@@ -3,7 +3,6 @@ const selectLabel = document.getElementById("sort-label");
 
 const mediaWrapper = document.querySelector(".photographer-medias");
 const sortSelectWrapper = document.createElement("button");
-sortSelectWrapper.setAttribute("onclick", "sort()");
 sortSelectWrapper.setAttribute("aria-haspopup", "listbox");
 sortSelectWrapper.setAttribute("aria-expanded", "false");
 sortSelectWrapper.classList.add("sort-select-wrapper");
@@ -18,15 +17,23 @@ const toggleButton = document.createElement("div");
 toggleButton.classList.add("sort-list-toggle-button-expand");
 sortSelectWrapper.appendChild(toggleButton);
 
-const newMenu = document.createElement("div");
+const newMenu = document.createElement("ul");
 newMenu.setAttribute("role", "listbox");
 newMenu.classList.add("sort-select-list", "hidden");
 sortSelectWrapper.appendChild(newMenu);
 
 for (let option of select.options) {
-  const newOption = document.createElement("div");
+  const newOption = document.createElement("li");
   newOption.setAttribute("role", "option");
-  newOption.setAttribute("onclick", `sort('${option.value}')`);
+  newOption.setAttribute("tabindex", "0");
+  newOption.addEventListener("click", function (event) {
+    sort(option.value);
+  });
+  newOption.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      sort(option.value);
+    }
+  });
   newOption.innerHTML = option.innerHTML;
   newOption.classList.add("sort-select-item", "hidden");
   newMenu.appendChild(newOption);
@@ -35,6 +42,16 @@ for (let option of select.options) {
       if (option.innerHTML === this.innerHTML) {
         select.selectedIndex = option.index;
         sortSelect.innerHTML = this.innerHTML;
+      }
+    }
+  });
+  newOption.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      for (let option of select.options) {
+        if (option.innerHTML === this.innerHTML) {
+          select.selectedIndex = option.index;
+          sortSelect.innerHTML = this.innerHTML;
+        }
       }
     }
   });

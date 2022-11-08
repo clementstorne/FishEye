@@ -1,0 +1,124 @@
+.sort-select-wrapper {
+  box-sizing: border-box;
+  width: 170px;
+  height: 68px;
+  position: relative;
+  background-color: #901c1c;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
+  margin: 9px 25px 23px 96px;
+  padding: 23px 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.sort-select-wrapper:focus {
+  outline: 3px solid #db8876;
+}
+
+.sort-select-wrapper::before {
+  content: "Trier par";
+  font-size: 18px;
+  font-weight: 700;
+  color: black;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  transform: translateX(-96px);
+}
+
+.sort-list-toggle-button-expand {
+  display: inline-block;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  transform: translateX(-18px);
+  height: 10px;
+  width: 16px;
+
+  background-image: url(../assets/icons/expand.svg);
+}
+
+.button-reduce {
+  background-image: url(../assets/icons/reduce.svg);
+}
+
+.sort-select {
+  padding: 0 10px;
+}
+
+.sort-select-list {
+  box-sizing: border-box;
+  background-color: #901c1c;
+  border-radius: 5px;
+  width: 170px;
+  padding: 10px 10px 6px;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+}
+
+.sort-select-item {
+  padding: 13px 10px;
+  border-bottom: 1px solid white;
+  list-style: none;
+}
+
+.sort-select-item:focus {
+  background-color: #db8876;
+  color: black;
+  outline: none;
+}
+
+.sort-select-item:hover {
+  background-color: #db8876;
+  color: black;
+  outline: none;
+}
+
+.sort-select-item:nth-of-type(3)::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  transform: translateX(-18px);
+  background-image: url(../assets/icons/reduce.svg);
+  height: 10px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.sort-select-item:nth-of-type(3) {
+  border-bottom: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#sort-label {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 0 58px;
+  display: none;
+}
+
+#sort {
+  width: 170px;
+  height: 69px;
+  background-color: #901c1c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 9px 25px 23px;
+  padding-left: 20px;
+  display: none;
+}

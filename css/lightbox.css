@@ -22,7 +22,6 @@
 
 .lightbox-col {
   width: 96px;
-  /* height: 900px; */
   height: 850px;
   display: flex;
   flex-flow: column nowrap;
@@ -40,7 +39,6 @@
 
 .lightbox-media {
   width: 1050px;
-  /* height: 900px; */
   height: 850px;
   border-radius: 5px;
   object-fit: cover;
