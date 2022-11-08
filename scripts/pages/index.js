@@ -1,4 +1,4 @@
-const photographersApi = new PhotographersApi("data/photographers.json");
+const photographersApi = new PhotographersApi('data/photographers.json');
 
 async function getPhotographers() {
   const photographers = await photographersApi.getPhotographersData();
@@ -8,7 +8,7 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.querySelector('.photographer_section');
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);

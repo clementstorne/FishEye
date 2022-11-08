@@ -1,13 +1,13 @@
 // Display and close contact modal
 
 async function displayModal() {
-  const contactModal = document.getElementById("modal-contact");
-  const body = document.querySelector("body");
-  const modalTitle = document.getElementById("modal-title");
+  const contactModal = document.getElementById('modal-contact');
+  const body = document.querySelector('body');
+  const modalTitle = document.getElementById('modal-title');
 
-  contactModal.style.display = "flex";
-  contactModal.setAttribute("aria-hidden", "false");
-  body.setAttribute("aria-hidden", "true");
+  contactModal.style.display = 'flex';
+  contactModal.setAttribute('aria-hidden', 'false');
+  body.setAttribute('aria-hidden', 'true');
   firstname.focus();
 
   const data = await getPhotographerData(photographerId);
@@ -16,23 +16,23 @@ async function displayModal() {
 }
 
 function closeModal() {
-  const contactModal = document.getElementById("modal-contact");
-  const body = document.querySelector("body");
+  const contactModal = document.getElementById('modal-contact');
+  const body = document.querySelector('body');
 
-  contactModal.style.display = "none";
-  contactModal.setAttribute("aria-hidden", "true");
-  body.setAttribute("aria-hidden", "false");
+  contactModal.style.display = 'none';
+  contactModal.setAttribute('aria-hidden', 'true');
+  body.setAttribute('aria-hidden', 'false');
 }
 
-window.addEventListener("click", (event) => {
-  const contactModal = document.getElementById("modal-contact");
+window.addEventListener('click', (event) => {
+  const contactModal = document.getElementById('modal-contact');
   if (event.target === contactModal) {
     closeModal();
   }
 });
 
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
     event.preventDefault();
     closeModal();
   }
@@ -40,11 +40,11 @@ window.addEventListener("keydown", (event) => {
 
 // Form validation
 
-const firstname = document.getElementById("first-name");
-const lastname = document.getElementById("last-name");
-const email = document.getElementById("email");
-const message = document.getElementById("message");
-const invalidFeedback = document.querySelectorAll(".invalid-feedback");
+const firstname = document.getElementById('first-name');
+const lastname = document.getElementById('last-name');
+const email = document.getElementById('email');
+const message = document.getElementById('message');
+const invalidFeedback = document.querySelectorAll('.invalid-feedback');
 
 function isNameValid(str) {
   let regex =
@@ -57,68 +57,63 @@ function isEmailValid(str) {
   return regex.test(str);
 }
 
-function showErrorMessage(formData, message) {
-  formData.dataset.error = message;
-  formData.dataset.errorVisible = "true";
-}
-
 function validateFirstname() {
   if (!isNameValid(firstname.value)) {
-    firstname.setAttribute("aria-invalid", "true");
-    firstname.classList.add("invalid");
+    firstname.setAttribute('aria-invalid', 'true');
+    firstname.classList.add('invalid');
     firstname.focus();
-    invalidFeedback[0].style.display = "block";
+    invalidFeedback[0].style.display = 'block';
   } else {
-    firstname.removeAttribute("aria-invalid");
-    firstname.classList.remove("invalid");
-    invalidFeedback[0].style.display = "none";
+    firstname.removeAttribute('aria-invalid');
+    firstname.classList.remove('invalid');
+    invalidFeedback[0].style.display = 'none';
   }
 }
 
 function validateLastname() {
   if (!isNameValid(lastname.value)) {
-    lastname.setAttribute("aria-invalid", "true");
-    lastname.classList.add("invalid");
+    lastname.setAttribute('aria-invalid', 'true');
+    lastname.classList.add('invalid');
     lastname.focus();
-    invalidFeedback[1].style.display = "block";
+    invalidFeedback[1].style.display = 'block';
   } else {
-    lastname.removeAttribute("aria-invalid");
-    lastname.classList.remove("invalid");
-    invalidFeedback[1].style.display = "none";
+    lastname.removeAttribute('aria-invalid');
+    lastname.classList.remove('invalid');
+    invalidFeedback[1].style.display = 'none';
   }
 }
 
 function validateEmail() {
   if (!isEmailValid(email.value)) {
-    email.setAttribute("aria-invalid", "true");
-    email.classList.add("invalid");
+    email.setAttribute('aria-invalid', 'true');
+    email.classList.add('invalid');
     email.focus();
-    invalidFeedback[2].style.display = "block";
+    invalidFeedback[2].style.display = 'block';
   } else {
-    email.removeAttribute("aria-invalid");
-    email.classList.remove("invalid");
-    invalidFeedback[2].style.display = "none";
+    email.removeAttribute('aria-invalid');
+    email.classList.remove('invalid');
+    invalidFeedback[2].style.display = 'none';
   }
 }
 
 function validateMessage() {
-  if (message.value === "") {
-    message.setAttribute("aria-invalid", "true");
-    message.classList.add("invalid");
+  if (message.value === '') {
+    message.setAttribute('aria-invalid', 'true');
+    message.classList.add('invalid');
     message.focus();
-    invalidFeedback[3].style.display = "block";
+    invalidFeedback[3].style.display = 'block';
   } else {
-    message.removeAttribute("aria-invalid");
-    message.classList.remove("invalid");
-    invalidFeedback[3].style.display = "none";
+    message.removeAttribute('aria-invalid');
+    message.classList.remove('invalid');
+    invalidFeedback[3].style.display = 'none';
   }
 }
 
 function clearFormFields() {
-  firstname.value = "";
-  lastname.value = "";
-  email.value = "";
-  message.value = "";
+  firstname.value = '';
+  lastname.value = '';
+  email.value = '';
+  message.value = '';
 }
 
 function validate(event) {
@@ -131,7 +126,7 @@ function validate(event) {
     isNameValid(firstname.value) &&
     isNameValid(lastname.value) &&
     isEmailValid(email.value) &&
-    message.value !== ""
+    message.value !== ''
   ) {
     closeModal();
     const newMessage = {

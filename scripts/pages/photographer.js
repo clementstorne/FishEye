@@ -1,8 +1,8 @@
-const photographersApi = new PhotographersApi("data/photographers.json");
-const mediasApi = new MediasApi("data/photographers.json");
+const photographersApi = new PhotographersApi('data/photographers.json');
+const mediasApi = new MediasApi('data/photographers.json');
 
 function getPhotographerId() {
-  return new URL(location.href).searchParams.get("id");
+  return new URL(location.href).searchParams.get('id');
 }
 
 const photographerId = getPhotographerId();
@@ -29,7 +29,7 @@ async function getPhotographerMedias(photographerId) {
 }
 
 function displayMedias(medias) {
-  const mediasGrid = document.querySelector(".medias-grid");
+  const mediasGrid = document.querySelector('.medias-grid');
 
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media);
@@ -52,45 +52,42 @@ function getTotalOfLikes(medias) {
 }
 
 function displayTotalOfLikes(medias) {
-  const cta = document.querySelector(".cta");
-  const photographerPrice = document.querySelector(".price");
+  const cta = document.querySelector('.cta');
+  const photographerPrice = document.querySelector('.price');
   const sum = getTotalOfLikes(medias);
-  const totalOfLikes = document.createElement("p");
+  const totalOfLikes = document.createElement('p');
   cta.insertBefore(totalOfLikes, photographerPrice);
-  totalOfLikes.classList.add("likes-total");
+  totalOfLikes.classList.add('likes-total');
   totalOfLikes.innerText = sum;
 }
 
 function addNewLike(target) {
   if (!target.dataset.alreadyLiked) {
-    target.dataset.alreadyLiked = "true";
+    target.dataset.alreadyLiked = 'true';
     target.innerText++;
-    document.querySelector(".likes-total").innerText++;
+    document.querySelector('.likes-total').innerText++;
   } else if (target.dataset.alreadyLiked) {
     delete target.dataset.alreadyLiked;
     target.innerText--;
-    document.querySelector(".likes-total").innerText--;
+    document.querySelector('.likes-total').innerText--;
   }
 }
 
 async function sort(orderBy) {
   const medias = await getPhotographerMedias(photographerId);
+  document.querySelector('.medias-grid').innerHTML = '';
   switch (orderBy) {
-    case "popularity":
-      const mediasSortedByPopularity = medias.sort(popularitySort);
-      document.querySelector(".medias-grid").innerHTML = "";
-      displayMedias(mediasSortedByPopularity);
+    case 'popularity':
+      displayMedias(medias.sort(popularitySort));
       break;
-    case "date":
-      const mediasSortedByDate = medias.sort(dateSort);
-      document.querySelector(".medias-grid").innerHTML = "";
-      displayMedias(mediasSortedByDate);
+    case 'date':
+      displayMedias(medias.sort(dateSort));
       break;
-    case "title":
-      const mediasSortedByTitle = medias.sort(titleSort);
-      document.querySelector(".medias-grid").innerHTML = "";
-      displayMedias(mediasSortedByTitle);
+    case 'title':
+      displayMedias(medias.sort(titleSort));
       break;
+    default:
+      throw new Error('This sort method does not exists');
   }
 }
 
