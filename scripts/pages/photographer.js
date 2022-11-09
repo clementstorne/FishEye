@@ -1,36 +1,44 @@
 const photographersApi = new PhotographersApi('data/photographers.json');
 const mediasApi = new MediasApi('data/photographers.json');
 
+/**
+ * Fonction qui récupère l'id du photographe dans l'URL de la page
+ * @return  {Integer}  id du photographe
+ */
 function getPhotographerId() {
-  return new URL(location.href).searchParams.get('id');
+  const stringId = new URL(location.href).searchParams.get('id');
+  return parseInt(stringId);
 }
 
-const photographerId = getPhotographerId();
-
-async function getPhotographerData(photographerId) {
-  const photographerData = await photographersApi.getOnePhotographerData(
-    photographerId
-  );
-  return photographerData;
-}
-
+/**
+ * Fonction qui affiche les données du photographe (carte + tarif journalier)
+ * @param   {Object}  photographer  Données du photographe
+ */
 function displayData(photographer) {
   const photographerModel = photographerFactory(photographer);
-  const photographerCard = photographerModel.createPhotographerCard();
-  const photographerPrice = photographerModel.getPhotographerPrice();
+  photographerModel.createPhotographerCard();
+  photographerModel.getPhotographerPrice();
 }
 
+/**
+ * Fonction qui récupère les médias d'un photographe à partir de son id
+ * @param   {Integer}  photographerId  id du photographe dont on veut afficher les médias
+ * @return  {Object[]}                 Tableau d'objets contenant les données des médias
+ */
 async function getPhotographerMedias(photographerId) {
   const allMedias = await mediasApi.getMedias();
   const photographerMedias = allMedias.filter(
-    (media) => media.photographerId == photographerId
+    (media) => media.photographerId === photographerId
   );
   return photographerMedias;
 }
 
+/**
+ * Fonction qui affiche l'ensemble des médias du photographe
+ * @param   {Object[]}  medias  Tableau d'objets contenant les données des médias
+ */
 function displayMedias(medias) {
   const mediasGrid = document.querySelector('.medias-grid');
-
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media);
     if (mediaModel.image !== undefined) {
@@ -43,14 +51,23 @@ function displayMedias(medias) {
   });
 }
 
+/**
+ * Fonction qui calcule le nombre total de likes du photographe
+ * @param   {Object[]}  medias  Tableau d'objets contenant les données des médias
+ * @return  {Integer}           Nombre total de likes du photographe
+ */
 function getTotalOfLikes(medias) {
-  let arrayOfLikes = [];
+  const arrayOfLikes = [];
   medias.forEach((media) => {
     arrayOfLikes.push(media.likes);
   });
   return arrayOfLikes.reduce((a, b) => a + b, 0);
 }
 
+/**
+ * Fonction qui affiche le nombre total de likes du photographe
+ * @param   {Object[]}  medias  Tableau d'objets contenant les données des médias
+ */
 function displayTotalOfLikes(medias) {
   const cta = document.querySelector('.cta');
   const photographerPrice = document.querySelector('.price');
@@ -61,6 +78,10 @@ function displayTotalOfLikes(medias) {
   totalOfLikes.innerText = sum;
 }
 
+/**
+ * Fonction qui gère l'ajout et la suppression d'un like sur un media
+ * @param   {HTMLElement}  target  Bouton de like
+ */
 function addNewLike(target) {
   if (!target.dataset.alreadyLiked) {
     target.dataset.alreadyLiked = 'true';
@@ -73,7 +94,12 @@ function addNewLike(target) {
   }
 }
 
+/**
+ * Fonction de tri des médias
+ * @param   {String}  orderBy  Critère de tri ('popularity', 'date' ou 'title')
+ */
 async function sort(orderBy) {
+  const photographerId = getPhotographerId();
   const medias = await getPhotographerMedias(photographerId);
   document.querySelector('.medias-grid').innerHTML = '';
   switch (orderBy) {
@@ -91,6 +117,12 @@ async function sort(orderBy) {
   }
 }
 
+/**
+ * Fonction de tri des médias par nombre de likes
+ * @param   {Object}  a  Premier média à comparer
+ * @param   {Object}  b  Deuxième média à comparer
+ * @return  {Integer}    Booléen numérique d'ordre de tri
+ */
 function popularitySort(a, b) {
   if (a.likes > b.likes) {
     return -1;
@@ -101,6 +133,12 @@ function popularitySort(a, b) {
   return 0;
 }
 
+/**
+ * Fonction de tri des médias par date
+ * @param   {Object}  a  Premier média à comparer
+ * @param   {Object}  b  Deuxième média à comparer
+ * @return  {Integer}    Booléen numérique d'ordre de tri
+ */
 function dateSort(a, b) {
   if (a.date < b.date) {
     return -1;
@@ -111,6 +149,12 @@ function dateSort(a, b) {
   return 0;
 }
 
+/**
+ * Fonction de tri des médias par ordre alphabétique des titres
+ * @param   {Object}  a  Premier média à comparer
+ * @param   {Object}  b  Deuxième média à comparer
+ * @return  {Integer}    Booléen numérique d'ordre de tri
+ */
 function titleSort(a, b) {
   if (a.title < b.title) {
     return -1;
@@ -121,13 +165,19 @@ function titleSort(a, b) {
   return 0;
 }
 
+/**
+ * Fonction qui charge et affiche les données dans le DOM
+ */
 async function init() {
-  const data = await getPhotographerData(photographerId);
-  const photographer = data[0];
+  const photographerId = getPhotographerId();
+  const photographer = await photographersApi.getOnePhotographerData(
+    photographerId
+  );
   displayData(photographer);
   const medias = await getPhotographerMedias(photographerId);
   displayMedias(medias);
   displayTotalOfLikes(medias);
+  displaySelectButton();
 }
 
 init();

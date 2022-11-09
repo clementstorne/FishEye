@@ -1,5 +1,6 @@
-// Display and close contact modal
-
+/**
+ * Fonction qui affiche la modale de contact
+ */
 async function displayModal() {
   const contactModal = document.getElementById('modal-contact');
   const body = document.querySelector('body');
@@ -10,11 +11,15 @@ async function displayModal() {
   body.setAttribute('aria-hidden', 'true');
   firstname.focus();
 
-  const data = await getPhotographerData(photographerId);
-  const photographerName = data[0].name;
+  const photographerId = getPhotographerId();
+  const data = await photographersApi.getOnePhotographerData(photographerId);
+  const photographerName = data.name;
   modalTitle.innerHTML = `Contactez-moi <br> ${photographerName}`;
 }
 
+/**
+ * Fonction qui ferme la modale de contact
+ */
 function closeModal() {
   const contactModal = document.getElementById('modal-contact');
   const body = document.querySelector('body');
@@ -24,13 +29,16 @@ function closeModal() {
   body.setAttribute('aria-hidden', 'false');
 }
 
-window.addEventListener('click', (event) => {
-  const contactModal = document.getElementById('modal-contact');
-  if (event.target === contactModal) {
-    closeModal();
-  }
-});
+/**
+ * Fermeture de la modale de contact au clic sur la croix
+ */
+document
+  .getElementById('modal-close-btn')
+  .addEventListener('click', closeModal);
 
+/**
+ * Fermeture de la modale de contact au clic sur la croix
+ */
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     event.preventDefault();
@@ -38,25 +46,37 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
-// Form validation
-
 const firstname = document.getElementById('first-name');
 const lastname = document.getElementById('last-name');
 const email = document.getElementById('email');
 const message = document.getElementById('message');
 const invalidFeedback = document.querySelectorAll('.invalid-feedback');
 
+/**
+ * Fonction qui vérifie si le format du nom et du prénom est valide
+ * (au moins 2 caractères alphabétiques ou trait d'union)
+ * @param   {String}  str  Chaîne de caractère à tester
+ * @return  {Boolean}      'true' sur la chaîne de caractère remplit les conditions et 'false' sinon
+ */
 function isNameValid(str) {
   let regex =
     /^[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\/\<\>\=\@\[\]\\\^\_\{\}\|\~]{2,}$/;
   return regex.test(str);
 }
 
+/**
+ * Fonction qui vérifie si le format de l'email est valide
+ * @param   {String}  str  Chaîne de caractère à tester
+ * @return  {Boolean}      'true' sur la chaîne de caractère remplit les conditions et 'false' sinon
+ */
 function isEmailValid(str) {
   let regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   return regex.test(str);
 }
 
+/**
+ * Fonction qui gère le feedback en cas de sasie invalide du prénom
+ */
 function validateFirstname() {
   if (!isNameValid(firstname.value)) {
     firstname.setAttribute('aria-invalid', 'true');
@@ -70,6 +90,9 @@ function validateFirstname() {
   }
 }
 
+/**
+ * Fonction qui gère le feedback en cas de sasie invalide du nom
+ */
 function validateLastname() {
   if (!isNameValid(lastname.value)) {
     lastname.setAttribute('aria-invalid', 'true');
@@ -83,6 +106,9 @@ function validateLastname() {
   }
 }
 
+/**
+ * Fonction qui gère le feedback en cas de sasie invalide de l'email
+ */
 function validateEmail() {
   if (!isEmailValid(email.value)) {
     email.setAttribute('aria-invalid', 'true');
@@ -96,8 +122,11 @@ function validateEmail() {
   }
 }
 
+/**
+ * Fonction qui gère le feedback en cas de message vide
+ */
 function validateMessage() {
-  if (message.value === '') {
+  if (message.value.length === 0) {
     message.setAttribute('aria-invalid', 'true');
     message.classList.add('invalid');
     message.focus();
@@ -109,6 +138,9 @@ function validateMessage() {
   }
 }
 
+/**
+ * Fonction qui vide les champs du formulaire
+ */
 function clearFormFields() {
   firstname.value = '';
   lastname.value = '';
@@ -116,6 +148,11 @@ function clearFormFields() {
   message.value = '';
 }
 
+/**
+ * Fonction qui vérifie les champs du formulaire et ne l'envoie que lorsqu'ils sont tous valides.
+ * Transmet les informations du formulaire dans la console.
+ * Après envoi, ferme la modale et vide les champs du formulaire.
+ */
 function validate(event) {
   event.preventDefault();
   validateMessage();
@@ -126,7 +163,7 @@ function validate(event) {
     isNameValid(firstname.value) &&
     isNameValid(lastname.value) &&
     isEmailValid(email.value) &&
-    message.value !== ''
+    message.value.length !== 0
   ) {
     closeModal();
     const newMessage = {

@@ -1,42 +1,22 @@
+/**
+ * API qui regroupe l'ensemble des données
+ */
 class Api {
+  /**
+   * Définit une source de données pour le site
+   * @param   {[String]}  url  URL de la source de données
+   */
   constructor(url) {
     this.url = url;
   }
 
+  /**
+   * Fonction qui permet de récupérer les données de l'API
+   * @return  {(JSON | Error)}  JSON contenant l'ensemble des données de l'API
+   */
   async get() {
     return fetch(this.url)
       .then((res) => res.json())
       .catch((err) => console.log(err));
-  }
-}
-
-class PhotographersApi extends Api {
-  constructor(url) {
-    super(url);
-  }
-
-  async getPhotographersData() {
-    const res = await this.get();
-    return res.photographers;
-  }
-
-  async getOnePhotographerData(photographerId) {
-    const res = await this.get();
-    const photographers = res.photographers;
-    const data = photographers.filter(
-      (photographer) => photographer.id == photographerId
-    );
-    return data;
-  }
-}
-
-class MediasApi extends Api {
-  constructor(url) {
-    super(url);
-  }
-
-  async getMedias() {
-    const res = await this.get();
-    return res.media;
   }
 }

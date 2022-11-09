@@ -1,3 +1,9 @@
+/**
+ * Fonction qui ouvre la lightbox
+ * @param   {String}                 mediaSrc   Chemin vers le média
+ * @param   {String}                 title      Titre du média
+ * @param   {String="image, video"}  mediaType  Type de média à afficher
+ */
 function displayLightbox(mediaSrc, title, mediaType) {
   const lightboxModal = document.getElementById('lightbox-wrapper');
   const body = document.querySelector('body');
@@ -37,6 +43,9 @@ function displayLightbox(mediaSrc, title, mediaType) {
   }
 }
 
+/**
+ * Fonction qui ferme la lightbox
+ */
 function closeLightbox() {
   const lightboxModal = document.getElementById('lightbox-wrapper');
   const body = document.querySelector('body');
@@ -49,6 +58,10 @@ function closeLightbox() {
   document.querySelector('.lightbox-media-title').remove();
 }
 
+/**
+ * Fonction qui récupère l'index du média actuellement affichée dans la lightbox
+ * @return  {Integer}  Index du média actuellement affichée dans la lightbox
+ */
 function getCurrentMediaIndex() {
   const medias = Array.from(document.querySelectorAll('.thumb-img'));
   const mediasSrc = medias.map((image) => image.getAttribute('src'));
@@ -57,6 +70,9 @@ function getCurrentMediaIndex() {
   return mediasSrc.findIndex((img) => img === currentMedia.getAttribute('src'));
 }
 
+/**
+ * Fonction qui affiche le média précédent
+ */
 function previous() {
   const mediasList = Array.from(document.querySelectorAll('.thumb-img'));
 
@@ -84,6 +100,9 @@ function previous() {
   }
 }
 
+/**
+ * Fonction qui affiche le média suivant
+ */
 function next() {
   const mediasList = Array.from(document.querySelectorAll('.thumb-img'));
 
@@ -111,11 +130,18 @@ function next() {
   }
 }
 
+/**
+ * Fonction qui détermine si la lightbox est fermée ou non
+ * @return  {Boolean}  'true' si la lightbox est fermé et 'false' si elle est ouverte
+ */
 function isLightboxClosed() {
   const lightboxModal = document.getElementById('lightbox-wrapper');
   return lightboxModal.getAttribute('aria-hidden');
 }
 
+/**
+ * Fermeture de la lightbox à l'appui sur la touche Echap du clavier
+ */
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && isLightboxClosed() === 'false') {
     event.preventDefault();
@@ -123,6 +149,9 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
+/**
+ * Affichage du média précédent à l'appui sur la touche Flèche gauche
+ */
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft' && isLightboxClosed() === 'false') {
     event.preventDefault();
@@ -130,6 +159,9 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
+/**
+ * Affichage du média suivant à l'appui sur la touche Flèche droite
+ */
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight' && isLightboxClosed() === 'false') {
     event.preventDefault();
